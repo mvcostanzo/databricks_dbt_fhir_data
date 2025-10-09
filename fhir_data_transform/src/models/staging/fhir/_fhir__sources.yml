@@ -1,0 +1,710 @@
+version: 2
+
+sources:
+  - name: fhir
+    database: staging
+    tables:
+      - name: allergyintolerance
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: clinicalstatus
+            data_type: struct<coding:array<struct<system:string,code:string>>>
+          - name: verificationstatus
+            data_type: struct<coding:array<struct<system:string,code:string>>>
+          - name: type
+            data_type: string
+          - name: category
+            data_type: array<string>
+          - name: criticality
+            data_type: string
+          - name: code
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>,text:string>
+          - name: patient
+            data_type: struct<reference:string>
+          - name: recordeddate
+            data_type: string
+          - name: reaction
+            data_type: array<struct<manifestation:array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>,severity:string>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: careplan
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: text
+            data_type: struct<status:string,div:string>
+          - name: status
+            data_type: string
+          - name: intent
+            data_type: string
+          - name: category
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>
+          - name: subject
+            data_type: struct<reference:string>
+          - name: encounter
+            data_type: struct<reference:string>
+          - name: period
+            data_type: struct<start:string,end:string>
+          - name: careteam
+            data_type: array<struct<reference:string>>
+          - name: activity
+            data_type: array<struct<detail:struct<code:struct<coding:array<struct<system:string,code:string,display:string>>,text:string>,status:string,location:struct<display:string>,reasonreference:array<struct<reference:string>>,reasoncode:array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>>>>
+          - name: addresses
+            data_type: array<struct<reference:string>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: careteam
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: status
+            data_type: string
+          - name: subject
+            data_type: struct<reference:string>
+          - name: encounter
+            data_type: struct<reference:string>
+          - name: period
+            data_type: struct<start:string,end:string>
+          - name: participant
+            data_type: array<struct<role:array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>,member:struct<reference:string,display:string>>>
+          - name: managingorganization
+            data_type: array<struct<reference:string,display:string>>
+          - name: reasoncode
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: claim
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: status
+            data_type: string
+          - name: type
+            data_type: struct<coding:array<struct<system:string,code:string>>>
+          - name: use
+            data_type: string
+          - name: patient
+            data_type: struct<reference:string,display:string>
+          - name: billableperiod
+            data_type: struct<start:string,end:string>
+          - name: created
+            data_type: string
+          - name: provider
+            data_type: struct<reference:string,display:string>
+          - name: priority
+            data_type: struct<coding:array<struct<system:string,code:string>>>
+          - name: facility
+            data_type: struct<reference:string,display:string>
+          - name: diagnosis
+            data_type: array<struct<sequence:bigint,diagnosisreference:struct<reference:string>>>
+          - name: insurance
+            data_type: array<struct<sequence:bigint,focal:boolean,coverage:struct<display:string>>>
+          - name: item
+            data_type: array<struct<sequence:bigint,productorservice:struct<coding:array<struct<system:string,code:string,display:string>>,text:string>,encounter:array<struct<reference:string>>,diagnosissequence:array<bigint>,informationsequence:array<bigint>,net:struct<value:double,currency:string>,proceduresequence:array<bigint>>>
+          - name: total
+            data_type: struct<value:double,currency:string>
+          - name: supportinginfo
+            data_type: array<struct<sequence:bigint,category:struct<coding:array<struct<system:string,code:string>>>,valuereference:struct<reference:string>>>
+          - name: procedure
+            data_type: array<struct<sequence:bigint,procedurereference:struct<reference:string>>>
+          - name: prescription
+            data_type: struct<reference:string>
+          - name: _rescued_data
+            data_type: string
+
+      - name: condition
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: clinicalstatus
+            data_type: struct<coding:array<struct<system:string,code:string>>>
+          - name: verificationstatus
+            data_type: struct<coding:array<struct<system:string,code:string>>>
+          - name: category
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>>>
+          - name: code
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>,text:string>
+          - name: subject
+            data_type: struct<reference:string>
+          - name: encounter
+            data_type: struct<reference:string>
+          - name: onsetdatetime
+            data_type: string
+          - name: recordeddate
+            data_type: string
+          - name: abatementdatetime
+            data_type: string
+          - name: _rescued_data
+            data_type: string
+
+      - name: device
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: udicarrier
+            data_type: array<struct<deviceidentifier:string,carrierhrf:string>>
+          - name: status
+            data_type: string
+          - name: distinctidentifier
+            data_type: string
+          - name: manufacturedate
+            data_type: string
+          - name: expirationdate
+            data_type: string
+          - name: lotnumber
+            data_type: string
+          - name: serialnumber
+            data_type: string
+          - name: devicename
+            data_type: array<struct<name:string,type:string>>
+          - name: type
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>,text:string>
+          - name: patient
+            data_type: struct<reference:string>
+          - name: _rescued_data
+            data_type: string
+
+      - name: diagnosticreport
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: status
+            data_type: string
+          - name: category
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>>>
+          - name: code
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>,text:string>
+          - name: subject
+            data_type: struct<reference:string>
+          - name: encounter
+            data_type: struct<reference:string>
+          - name: effectivedatetime
+            data_type: string
+          - name: issued
+            data_type: string
+          - name: performer
+            data_type: array<struct<reference:string,display:string>>
+          - name: presentedform
+            data_type: array<struct<contenttype:string,data:string>>
+          - name: result
+            data_type: array<struct<reference:string,display:string>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: documentreference
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: identifier
+            data_type: array<struct<system:string,value:string>>
+          - name: status
+            data_type: string
+          - name: type
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>>
+          - name: category
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>>>
+          - name: subject
+            data_type: struct<reference:string>
+          - name: date
+            data_type: string
+          - name: author
+            data_type: array<struct<reference:string,display:string>>
+          - name: custodian
+            data_type: struct<reference:string,display:string>
+          - name: content
+            data_type: array<struct<attachment:struct<contenttype:string,data:string>,format:struct<system:string,code:string,display:string>>>
+          - name: context
+            data_type: struct<encounter:array<struct<reference:string>>,period:struct<start:string,end:string>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: encounter
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: status
+            data_type: string
+          - name: class
+            data_type: struct<system:string,code:string>
+          - name: type
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>
+          - name: subject
+            data_type: struct<reference:string,display:string>
+          - name: participant
+            data_type: array<struct<type:array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>,period:struct<start:string,end:string>,individual:struct<reference:string,display:string>>>
+          - name: period
+            data_type: struct<start:string,end:string>
+          - name: location
+            data_type: array<struct<location:struct<reference:string,display:string>>>
+          - name: serviceprovider
+            data_type: struct<reference:string,display:string>
+          - name: reasoncode
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>>>
+          - name: hospitalization
+            data_type: struct<dischargedisposition:struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>
+          - name: identifier
+            data_type: array<struct<use:string,system:string,value:string>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: explanationofbenefit
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: contained
+            data_type: array<struct<resourcetype:string,id:string,status:string,intent:string,subject:struct<reference:string>,requester:struct<reference:string>,performer:array<struct<reference:string>>,type:struct<text:string>,beneficiary:struct<reference:string>,payor:array<struct<display:string>>>>
+          - name: identifier
+            data_type: array<struct<system:string,value:string>>
+          - name: status
+            data_type: string
+          - name: type
+            data_type: struct<coding:array<struct<system:string,code:string>>>
+          - name: use
+            data_type: string
+          - name: patient
+            data_type: struct<reference:string>
+          - name: billableperiod
+            data_type: struct<start:string,end:string>
+          - name: created
+            data_type: string
+          - name: insurer
+            data_type: struct<display:string>
+          - name: provider
+            data_type: struct<reference:string>
+          - name: referral
+            data_type: struct<reference:string>
+          - name: facility
+            data_type: struct<reference:string,display:string>
+          - name: claim
+            data_type: struct<reference:string>
+          - name: outcome
+            data_type: string
+          - name: careteam
+            data_type: array<struct<sequence:bigint,provider:struct<reference:string>,role:struct<coding:array<struct<system:string,code:string,display:string>>>>>
+          - name: diagnosis
+            data_type: array<struct<sequence:bigint,diagnosisreference:struct<reference:string>,type:array<struct<coding:array<struct<system:string,code:string>>>>>>
+          - name: insurance
+            data_type: array<struct<focal:boolean,coverage:struct<reference:string,display:string>>>
+          - name: item
+            data_type: array<struct<sequence:bigint,category:struct<coding:array<struct<system:string,code:string,display:string>>>,productorservice:struct<coding:array<struct<system:string,code:string,display:string>>,text:string>,servicedperiod:struct<start:string,end:string>,locationcodeableconcept:struct<coding:array<struct<system:string,code:string,display:string>>>,encounter:array<struct<reference:string>>,diagnosissequence:array<bigint>,informationsequence:array<bigint>,net:struct<value:double,currency:string>,adjudication:array<struct<category:struct<coding:array<struct<system:string,code:string,display:string>>>,amount:struct<value:double,currency:string>>>>>
+          - name: total
+            data_type: array<struct<category:struct<coding:array<struct<system:string,code:string,display:string>>,text:string>,amount:struct<value:double,currency:string>>>
+          - name: payment
+            data_type: struct<amount:struct<value:double,currency:string>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: imagingstudy
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: identifier
+            data_type: array<struct<use:string,system:string,value:string>>
+          - name: status
+            data_type: string
+          - name: subject
+            data_type: struct<reference:string>
+          - name: encounter
+            data_type: struct<reference:string>
+          - name: started
+            data_type: string
+          - name: numberofseries
+            data_type: bigint
+          - name: numberofinstances
+            data_type: bigint
+          - name: procedurecode
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>
+          - name: location
+            data_type: struct<reference:string,display:string>
+          - name: series
+            data_type: array<struct<uid:string,number:bigint,modality:struct<system:string,code:string,display:string>,numberofinstances:bigint,bodysite:struct<system:string,code:string,display:string>,started:string,instance:array<struct<uid:string,sopclass:struct<system:string,code:string>,number:bigint,title:string>>>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: immunization
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: status
+            data_type: string
+          - name: vaccinecode
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>,text:string>
+          - name: patient
+            data_type: struct<reference:string>
+          - name: encounter
+            data_type: struct<reference:string>
+          - name: occurrencedatetime
+            data_type: string
+          - name: primarysource
+            data_type: boolean
+          - name: location
+            data_type: struct<reference:string,display:string>
+          - name: _rescued_data
+            data_type: string
+
+      - name: location
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: status
+            data_type: string
+          - name: name
+            data_type: string
+          - name: telecom
+            data_type: array<struct<system:string,value:string>>
+          - name: address
+            data_type: struct<line:array<string>,city:string,state:string,postalcode:string,country:string>
+          - name: position
+            data_type: struct<longitude:double,latitude:double>
+          - name: description
+            data_type: string
+          - name: mode
+            data_type: string
+          - name: physicaltype
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>>
+          - name: managingorganization
+            data_type: struct<identifier:struct<system:string,value:string>,display:string>
+          - name: identifier
+            data_type: array<struct<system:string,value:string>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: medication
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: code
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>,text:string>
+          - name: status
+            data_type: string
+          - name: _rescued_data
+            data_type: string
+
+      - name: medicationadministration
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: status
+            data_type: string
+          - name: medicationcodeableconcept
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>,text:string>
+          - name: subject
+            data_type: struct<reference:string>
+          - name: context
+            data_type: struct<reference:string>
+          - name: effectivedatetime
+            data_type: string
+          - name: reasoncode
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>
+          - name: reasonreference
+            data_type: array<struct<reference:string,display:string>>
+          - name: dosage
+            data_type: struct<dose:struct<value:double>,ratequantity:struct<value:bigint>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: medicationrequest
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: status
+            data_type: string
+          - name: intent
+            data_type: string
+          - name: category
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>
+          - name: medicationcodeableconcept
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>,text:string>
+          - name: subject
+            data_type: struct<reference:string>
+          - name: encounter
+            data_type: struct<reference:string>
+          - name: authoredon
+            data_type: string
+          - name: requester
+            data_type: struct<reference:string,display:string>
+          - name: reasonreference
+            data_type: array<struct<reference:string,display:string>>
+          - name: medicationreference
+            data_type: struct<reference:string>
+          - name: reasoncode
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>
+          - name: dosageinstruction
+            data_type: array<struct<sequence:bigint,text:string,asneededboolean:boolean,additionalinstruction:array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>,timing:struct<repeat:struct<frequency:bigint,period:double,periodunit:string>>,doseandrate:array<struct<type:struct<coding:array<struct<system:string,code:string,display:string>>>,dosequantity:struct<value:double>>>>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: observation
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: status
+            data_type: string
+          - name: category
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>>>
+          - name: code
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>,text:string>
+          - name: subject
+            data_type: struct<reference:string>
+          - name: encounter
+            data_type: struct<reference:string>
+          - name: effectivedatetime
+            data_type: string
+          - name: issued
+            data_type: string
+          - name: valuequantity
+            data_type: struct<value:double,unit:string,system:string,code:string>
+          - name: component
+            data_type: array<struct<code:struct<coding:array<struct<system:string,code:string,display:string>>,text:string>,valuequantity:struct<value:double,unit:string,system:string,code:string>,valuecodeableconcept:struct<coding:array<struct<system:string,code:string,display:string>>,text:string>,valuestring:string>>
+          - name: valuecodeableconcept
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>,text:string>
+          - name: valuestring
+            data_type: string
+          - name: _rescued_data
+            data_type: string
+
+      - name: organization
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: extension
+            data_type: array<struct<url:string,valueinteger:bigint>>
+          - name: active
+            data_type: boolean
+          - name: type
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>
+          - name: name
+            data_type: string
+          - name: telecom
+            data_type: array<struct<system:string,value:string>>
+          - name: address
+            data_type: array<struct<line:array<string>,city:string,state:string,postalcode:string,country:string>>
+          - name: identifier
+            data_type: array<struct<system:string,value:string>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: parameters
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: parameter
+            data_type: array<struct<name:string,valuestring:string,part:array<struct<name:string,valuestring:string>>>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: patient
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: text
+            data_type: struct<status:string,div:string>
+          - name: extension
+            data_type: array<struct<url:string,extension:array<struct<url:string,valuecoding:struct<system:string,code:string,display:string>,valuestring:string>>,valuestring:string,valuecode:string,valueaddress:struct<city:string,state:string,country:string>,valuedecimal:double>>
+          - name: identifier
+            data_type: array<struct<system:string,value:string,type:struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>>
+          - name: name
+            data_type: array<struct<use:string,family:string,given:array<string>,prefix:array<string>,suffix:array<string>>>
+          - name: telecom
+            data_type: array<struct<system:string,value:string,use:string>>
+          - name: gender
+            data_type: string
+          - name: birthdate
+            data_type: date
+          - name: address
+            data_type: array<struct<extension:array<struct<url:string,extension:array<struct<url:string,valuedecimal:double>>>>,line:array<string>,city:string,state:string,postalcode:string,country:string>>
+          - name: maritalstatus
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>,text:string>
+          - name: multiplebirthboolean
+            data_type: boolean
+          - name: communication
+            data_type: array<struct<language:struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>>
+          - name: deceaseddatetime
+            data_type: string
+          - name: multiplebirthinteger
+            data_type: bigint
+          - name: _rescued_data
+            data_type: string
+
+      - name: practitioner
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: extension
+            data_type: array<struct<url:string,valueinteger:bigint>>
+          - name: identifier
+            data_type: array<struct<system:string,value:string>>
+          - name: active
+            data_type: boolean
+          - name: name
+            data_type: array<struct<family:string,given:array<string>,prefix:array<string>>>
+          - name: telecom
+            data_type: array<struct<extension:array<struct<url:string,valueboolean:boolean>>,system:string,value:string,use:string>>
+          - name: address
+            data_type: array<struct<line:array<string>,city:string,state:string,postalcode:string,country:string>>
+          - name: gender
+            data_type: string
+          - name: _rescued_data
+            data_type: string
+
+      - name: practitionerrole
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: practitioner
+            data_type: struct<identifier:struct<system:string,value:string>,display:string>
+          - name: code
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>
+          - name: specialty
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>
+          - name: telecom
+            data_type: array<struct<system:string,value:string,extension:array<struct<url:string,valueboolean:boolean>>,use:string>>
+          - name: organization
+            data_type: struct<identifier:struct<system:string,value:string>,display:string>
+          - name: location
+            data_type: array<struct<identifier:struct<system:string,value:string>,display:string>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: procedure
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: status
+            data_type: string
+          - name: code
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>,text:string>
+          - name: subject
+            data_type: struct<reference:string>
+          - name: encounter
+            data_type: struct<reference:string>
+          - name: performedperiod
+            data_type: struct<start:string,end:string>
+          - name: location
+            data_type: struct<reference:string,display:string>
+          - name: reasonreference
+            data_type: array<struct<reference:string,display:string>>
+          - name: reasoncode
+            data_type: array<struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: provenance
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: meta
+            data_type: struct<profile:array<string>>
+          - name: target
+            data_type: array<struct<reference:string>>
+          - name: recorded
+            data_type: string
+          - name: agent
+            data_type: array<struct<type:struct<coding:array<struct<system:string,code:string,display:string>>,text:string>,who:struct<reference:string,display:string>,onbehalfof:struct<reference:string,display:string>>>
+          - name: _rescued_data
+            data_type: string
+
+      - name: supplydelivery
+        columns:
+          - name: resourcetype
+            data_type: string
+          - name: id
+            data_type: string
+          - name: status
+            data_type: string
+          - name: patient
+            data_type: struct<reference:string>
+          - name: type
+            data_type: struct<coding:array<struct<system:string,code:string,display:string>>>
+          - name: supplieditem
+            data_type: struct<quantity:struct<value:bigint>,itemcodeableconcept:struct<coding:array<struct<system:string,code:string,display:string>>,text:string>>
+          - name: occurrencedatetime
+            data_type: string
+          - name: _rescued_data
+            data_type: string

@@ -1,0 +1,9 @@
+[project]
+name = "fhir-data-transform"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "dbt-core>=1.10.13",
+    "dbt-databricks>=1.10.9",
+    "pip-system-certs>=5.2",
+]
