@@ -16,7 +16,7 @@ analysis-paths: ["src/analyses"]
 test-paths: ["src/tests"]
 seed-paths: ["src/seeds"]
 macro-paths: ["src/macros"]
-snapshot-paths: ["src/snapshots"]
+snapshot-paths: ["src/models"]
 
 clean-targets: # directories to be removed by `dbt clean`
   - "target"
@@ -33,3 +33,5 @@ models:
     # Config indicated by + and applies to all files under models/example/
     staging:
       +materialized: view
+    marts/snapshot_feeds:
+      +materialized: ephemeral
