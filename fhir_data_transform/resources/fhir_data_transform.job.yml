@@ -25,6 +25,7 @@ resources:
               - 'dbt deps --target=${bundle.target}'
               - 'dbt seed --target=${bundle.target}'
               - 'dbt run --target=${bundle.target}'
+              - 'dbt snapshot --target=${bundle.target}'
 
       environments:
         - environment_key: '3c66eba2-ea12-4f60-a4a5-fc13b78eed6a'
