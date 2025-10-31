@@ -1,0 +1,15 @@
+version: 2
+snapshots: 
+  - name: DimPatient
+    relation: ref('snap_dim__patient')
+    config: 
+      database: marts 
+      schema: person
+      alias: DimPatient
+      unique_key: PatientId
+      dbt_valid_to_current: "to_date('9999-12-13', 'yyyy-MM-dd')"
+      snapshot_meta_column_names:
+        dbt_valid_from: valid_from
+        dbt_valid_to: valid_to
+      strategy: check
+      check_cols: all

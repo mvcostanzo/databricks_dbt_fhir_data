@@ -14,7 +14,7 @@ with source as (
         {{ adapter.quote("id") }},
         {{ adapter.quote("meta") }}.profile as meta_profile,
         {{ adapter.quote("text") }}.status as text_status,
-        {{ adapter.quote("text") }}.div as text_div
+        {{ adapter.quote("text") }}.div as text_div,
         {{ adapter.quote("extension") }},
         {{ adapter.quote("identifier") }},
         {{ adapter.quote("name") }},

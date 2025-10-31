@@ -1,0 +1,68 @@
+models:
+  - name: int_allergyintolerance_final
+    description: ""
+    columns:
+      - name: allergyintolerance_id
+        data_type: string
+        description: ""
+        data_tests:
+          - not_null
+
+      - name: clinicalstatus
+        data_type: string
+        description: ""
+
+      - name: verificationstatus
+        data_type: string
+        description: ""
+
+      - name: type
+        data_type: string
+        description: ""
+
+      - name: category
+        data_type: string
+        description: ""
+
+      - name: criticality
+        data_type: string
+        description: ""
+
+      - name: code
+        data_type: string
+        description: ""
+
+      - name: code_display
+        data_type: string
+        description: ""
+
+      - name: code_text
+        data_type: string
+        description: ""
+
+      - name: patient_id
+        data_type: string
+        description: ""
+        data_tests:
+          - not_null
+
+      - name: recordeddate
+        data_type: string
+        description: ""
+
+      - name: reaction_manifestation_code
+        data_type: string
+        description: ""
+
+      - name: reaction_manifestation_display
+        data_type: string
+        description: ""
+
+      - name: reaction_manifestation_text
+        data_type: string
+        description: ""
+
+      - name: reaction_severity
+        data_type: string
+        description: ""
+
